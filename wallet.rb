@@ -1,5 +1,5 @@
 coins = [1,2,5,10]
-wallet = Array.new(rand(1..11)) {coins.sample}
+wallet = Array.new(rand(0..11)) {coins.sample}
 puts wallet.inspect
 if wallet.count == 0
     puts "У тебя нет денег"
