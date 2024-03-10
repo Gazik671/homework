@@ -1,8 +1,9 @@
-wallet = Array.new(rand(1..11)) {[1,2,5,10].sample}
+coins = [1,2,5,10]
+wallet = Array.new(rand(1..11)) {coins.sample}
 puts wallet.inspect
-if wallet.sum == 0
+if wallet.count == 0
     puts "У тебя нет денег"
 else
     puts "В сумме денег: #{wallet.sum}"
-    puts "Штук каждой монеты: #{wallet.group_by { |el| el}}"
+    puts "Штук каждой монеты: #{wallet.tally}"
 end

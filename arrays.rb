@@ -7,7 +7,7 @@ random_array4 = Array.new(rand(1..50)) { rand(1..5) }
 # Нужно вывести:
 
 # - Количество элементов в массиве
-puts "Количество элементов в массиве: #{random_array1.length}"
+puts "Количество элементов в массиве: #{random_array1.count}"
 
 # - Какое самое большое число
 puts "Какое самое большое число: #{random_array1.max}"
@@ -16,16 +16,16 @@ puts "Какое самое большое число: #{random_array1.max}"
 puts "Какое самое маленькое: #{random_array1.min}"
 
 # - Сколько отрицательных чисел
-puts "Сколько отрицательных чисел: #{random_array1.count { |el| el < 0 }}"
+puts "Сколько отрицательных чисел: #{random_array1.count { |el| el.negative? }}"
 
 # - Сколько положительных
-puts "Сколько положительных: #{random_array1.count { |el| el > 0 }}"
+puts "Сколько положительных: #{random_array1.count { |el| el.positive? }}"
 
 # - Сумма отрицательных
-puts "Сумма отрицательных: #{random_array1.select { |el| el < 0 }.sum}"
+puts "Сумма отрицательных: #{random_array1.select { |el| el.negative? }.sum}"
 
 # - Сумма положиетельных
-puts "Сумма положиетельных: #{random_array1.select { |el| el > 0 }.sum}"
+puts "Сумма положиетельных: #{random_array1.select { |el| el.negative? }.sum}"
 
 # - Сумма всех чисел в массива
 puts "Сумма всех чисел в массива: #{random_array1.sum}"
@@ -34,33 +34,33 @@ puts "Сумма всех чисел в массива: #{random_array1.sum}"
 puts "Являются ли все числа четные: #{random_array1.all? { |el| el.even? }}"
 
 # - Являются ли все числа нечетные
-puts "Являются ли все числа четные: #{random_array1.all? { |el| !el.even? }}"
+puts "Являются ли все числа нечетные: #{random_array1.all? { |el| el.odd? }}"
 
 # - Содержить ли массив числа больше 80?
-puts "Содержить ли массив числа больше 80?: #{random_array1.any? { |el| el > 80 }}"
+puts "Содержить ли массив числа больше 80?: #{random_array1.any? { _1 > 80 }}"
 
 # - Содержит ли массив дубликаты?
-puts "Содержит ли массив дубликаты?: #{random_array1.uniq! != nil}"
+puts "Содержит ли массив дубликаты?: #{random_array1.uniq.length != random_array1.length}"
 
 # - Сложить два массива random_array1 и random_array2 в новый массив random_array3
 # оставив в нем только уникальные символы и вывести в отсортированном виде от меньшего
 # к большему
-random_array3 = (random_array1 + random_array2).uniq
+random_array3 = random_array1 | random_array2
 puts " Сложить два массива random_array1 и random_array2 в новый массив random_array3 
 оставив в нем только уникальные символы и вывести в отсортированном виде от меньшего 
 к большему: #{random_array3.sort}"
 
 # - Удалить из массива random_array3 все отрицательные числа
-puts "Удалить из массива random_array3 все отрицательные числа: #{random_array3.reject! { |el| el < 0 }}"
+puts "Удалить из массива random_array3 все отрицательные числа: #{random_array3.reject! { |el| el.negative? }}"
 
 # - Выведи рандомно 3 элемента массива
 puts "Выведи рандомно 3 элемента массива: #{random_array1.sample(3)}"
 
 # - Раздели массив random_array3 на 2 равные части, если количество элементов массива
 # нечетное то добавь туда один элемент со случайным числом
-random_array3 << rand(-100..100) if random_array3.length.even? == false
+random_array3 << rand(-100..100) if random_array3.length.odd? == false
 puts " Раздели массив random_array3 на 2 равные части, если количество элементов массива 
 нечетное то добавь туда один элемент со случайным числом: #{random_array3.each_slice(random_array3.length/2).to_a}"
 
 # - Найти число в random_array4 которое встречается чаще всего
-puts "Найти число в random_array4 которое встречается чаще всего: #{random_array4.group_by { |el| el}.max_by { |k, v| v.length }.first}"
+puts "Найти число в random_array4 которое встречается чаще всего: #{random_array4.group_by { |el| el}.max_by { |_, v| v.length }.first}"
