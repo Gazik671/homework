@@ -58,7 +58,7 @@ puts "Выведи рандомно 3 элемента массива: #{random_
 
 # - Раздели массив random_array3 на 2 равные части, если количество элементов массива
 # нечетное то добавь туда один элемент со случайным числом
-random_array3 << rand(-100..100) if random_array3.length.odd? == false
+random_array3 << rand(-100..100) if random_array3.length.odd?
 puts " Раздели массив random_array3 на 2 равные части, если количество элементов массива 
 нечетное то добавь туда один элемент со случайным числом: #{random_array3.each_slice(random_array3.length/2).to_a}"
 
