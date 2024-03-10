@@ -16,25 +16,25 @@ puts "Какое самое большое число: #{random_array1.max}"
 puts "Какое самое маленькое: #{random_array1.min}"
 
 # - Сколько отрицательных чисел
-puts "Сколько отрицательных чисел: #{random_array1.count { |el| el.negative? }}"
+puts "Сколько отрицательных чисел: #{random_array1.count(&:negative?)}"
 
 # - Сколько положительных
-puts "Сколько положительных: #{random_array1.count { |el| el.positive? }}"
+puts "Сколько положительных: #{random_array1.count(&:positive?)}"
 
 # - Сумма отрицательных
-puts "Сумма отрицательных: #{random_array1.select { |el| el.negative? }.sum}"
+puts "Сумма отрицательных: #{random_array1.select(&:negative?).sum}"
 
 # - Сумма положиетельных
-puts "Сумма положиетельных: #{random_array1.select { |el| el.negative? }.sum}"
+puts "Сумма положиетельных: #{random_array1.select(&:positive?).sum}"
 
 # - Сумма всех чисел в массива
 puts "Сумма всех чисел в массива: #{random_array1.sum}"
 
 # - Являются ли все числа четные
-puts "Являются ли все числа четные: #{random_array1.all? { |el| el.even? }}"
+puts "Являются ли все числа четные: #{random_array1.all?(&:even?)}"
 
 # - Являются ли все числа нечетные
-puts "Являются ли все числа нечетные: #{random_array1.all? { |el| el.odd? }}"
+puts "Являются ли все числа нечетные: #{random_array1.all?(&:odd?)}"
 
 # - Содержить ли массив числа больше 80?
 puts "Содержить ли массив числа больше 80?: #{random_array1.any? { _1 > 80 }}"
@@ -51,7 +51,7 @@ puts " Сложить два массива random_array1 и random_array2 в н
 к большему: #{random_array3.sort}"
 
 # - Удалить из массива random_array3 все отрицательные числа
-puts "Удалить из массива random_array3 все отрицательные числа: #{random_array3.reject! { |el| el.negative? }}"
+puts "Удалить из массива random_array3 все отрицательные числа: #{random_array3.reject!(&:negative?)}"
 
 # - Выведи рандомно 3 элемента массива
 puts "Выведи рандомно 3 элемента массива: #{random_array1.sample(3)}"
@@ -63,4 +63,4 @@ puts " Раздели массив random_array3 на 2 равные части,
 нечетное то добавь туда один элемент со случайным числом: #{random_array3.each_slice(random_array3.length/2).to_a}"
 
 # - Найти число в random_array4 которое встречается чаще всего
-puts "Найти число в random_array4 которое встречается чаще всего: #{random_array4.group_by { |el| el}.max_by { |_, v| v.length }.first}"
+puts "Найти число в random_array4 которое встречается чаще всего: #{random_array4.tally.max_by(&:last)&.first}"
